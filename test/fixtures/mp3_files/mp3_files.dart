@@ -19,8 +19,18 @@ class Mp3Files extends BasePath {
   String get folderWithSubSubfolder => withBasePath(_folderWithSubSubfolder);
   String get folderWithOneSubfolder => withBasePath(_folderWithOneSubfolder);
 
-  String get firstFileInSimpleFolder =>
-      withBasePath('2023 - Пляска святого Вита\\01. Гори по полной!.mp3');
-  String get lastFileInSimpleFolder =>
-      withBasePath('2023 - Пляска святого Вита\\10. Сёстры бога.mp3');
+  List<String> get fileInSimpleFolder => [
+        withPath('01. Гори по полной!.mp3'),
+        withPath('02. Пляска святого Вита.mp3'),
+        withPath('03. Ловец змей.mp3'),
+        withPath('04. Проснись во мне зверь.mp3'),
+        withPath('05. Именем леса.mp3'),
+        withPath('06. Безбожники.mp3'),
+        withPath('07. Сто дней.mp3'),
+        withPath('08. Так долго ждать.mp3'),
+        withPath('09. Бесхвостая лиса.mp3'),
+        withPath('10. Сёстры бога.mp3'),
+      ];
+
+  String withPath(String name) => withBasePath('$_simpleFolder\\$name');
 }

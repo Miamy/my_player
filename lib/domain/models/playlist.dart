@@ -56,7 +56,7 @@ class Playlist {
       return;
     }
     _index++;
-    if (_index == _items.length - 1) {
+    if (_index == _items.length) {
       switch (repeatType) {
         case RepeatType.none:
           _index = -1;
@@ -75,7 +75,7 @@ class Playlist {
       return;
     }
     _index--;
-    if (_index == 0) {
+    if (_index == -1) {
       switch (repeatType) {
         case RepeatType.none:
           _index = -1;

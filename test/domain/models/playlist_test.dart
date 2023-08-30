@@ -160,22 +160,98 @@ void main() {
           tearDown(() {});
 
           test(
-            'Navigation to first item in list',
+            'Navigation to the first item in the list',
             () {
               expect(playlist.current, null);
               playlist.first();
               expect(playlist.current?.source.source,
-                  mp3Files.firstFileInSimpleFolder);
+                  mp3Files.fileInSimpleFolder.first);
             },
           );
 
           test(
-            'Navigation to last item in list',
+            'Navigation to the last item in the list',
             () {
               expect(playlist.current, null);
               playlist.last();
               expect(playlist.current?.source.source,
-                  mp3Files.lastFileInSimpleFolder);
+                  mp3Files.fileInSimpleFolder.last);
+            },
+          );
+
+          test(
+            'Navigation to the next item in the list',
+            () {
+              expect(playlist.current, null);
+              playlist.first();
+
+              playlist.next(RepeatType.none);
+              expect(playlist.current?.source.source,
+                  mp3Files.fileInSimpleFolder[1]);
+
+              playlist.next(RepeatType.all);
+              expect(playlist.current?.source.source,
+                  mp3Files.fileInSimpleFolder[2]);
+
+              playlist.next(RepeatType.current);
+              expect(playlist.current?.source.source,
+                  mp3Files.fileInSimpleFolder[2]);
+
+              playlist.last();
+              playlist.next(RepeatType.none);
+              expect(playlist.current, null);
+
+              playlist.last();
+              playlist.next(RepeatType.all);
+              expect(playlist.current?.source.source,
+                  mp3Files.fileInSimpleFolder[0]);
+
+              playlist.last();
+              playlist.next(RepeatType.current);
+              expect(playlist.current?.source.source,
+                  mp3Files.fileInSimpleFolder.last);
+            },
+          );
+
+          test(
+            'Navigation to the prev item in the list',
+            () {
+              expect(playlist.current, null);
+              playlist.last();
+
+              playlist.prev(RepeatType.none);
+              expect(
+                  playlist.current?.source.source,
+                  mp3Files.fileInSimpleFolder[
+                      mp3Files.fileInSimpleFolder.length - 2]);
+
+              playlist.prev(RepeatType.all);
+              expect(
+                  playlist.current?.source.source,
+                  mp3Files.fileInSimpleFolder[
+                      mp3Files.fileInSimpleFolder.length - 3]);
+
+              playlist.prev(RepeatType.current);
+              expect(
+                  playlist.current?.source.source,
+                  mp3Files.fileInSimpleFolder[
+                      mp3Files.fileInSimpleFolder.length - 3]);
+
+              playlist.first();
+              playlist.prev(RepeatType.none);
+              expect(playlist.current, null);
+
+              playlist.first();
+              playlist.prev(RepeatType.all);
+              expect(
+                  playlist.current?.source.source,
+                  mp3Files.fileInSimpleFolder[
+                      mp3Files.fileInSimpleFolder.length - 1]);
+
+              playlist.first();
+              playlist.prev(RepeatType.current);
+              expect(playlist.current?.source.source,
+                  mp3Files.fileInSimpleFolder.first);
             },
           );
         },
