@@ -41,7 +41,10 @@ class Playlist {
   }
 
   final List<PlayableItem> _items = [];
+
   int get length => _items.length;
+  bool get isEmpty => _items.isEmpty;
+
   int _index = -1;
   PlayableItem? get current =>
       _index == -1 ? null : (_items.isEmpty ? null : _items[_index]);
